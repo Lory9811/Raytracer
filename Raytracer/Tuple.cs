@@ -81,7 +81,18 @@ namespace Raytracer {
             return new Tuple(tuple.x / scalar, tuple.y / scalar,
                 tuple.z / scalar, tuple.w / scalar);
         }
-    
+
+        public override bool Equals(object? obj) {
+            if (obj is Tuple) {
+                Tuple other = (Tuple)obj;
+
+                return x == other.x && y == other.y && 
+                    z == other.z && w == other.w;    
+            }
+
+            return base.Equals(obj);
+        }
+
         public override string ToString() {
             return $"{{{x},{y},{z},{w}}}";
         }
