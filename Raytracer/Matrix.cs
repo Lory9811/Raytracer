@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Raytracer {
+﻿namespace Raytracer {
     public class Matrix {
         public readonly int order;
         private float[,] matrix;
@@ -21,7 +15,7 @@ namespace Raytracer {
 
         public Matrix(int order, float[,] matrix) {
             this.order = order;
-            
+
             if (matrix.Length != order * order) {
                 throw new ArgumentException("Incorrect size for input data");
             }
@@ -35,6 +29,66 @@ namespace Raytracer {
                 matrix[i, i] = 1;
             }
             return matrix;
+        }
+
+        public static Matrix Translation(float x, float y, float z) {
+            Matrix translation = Eye(4);
+            translation[0, 3] = x;
+            translation[1, 3] = y;
+            translation[2, 3] = z;
+
+            return translation;
+        }
+
+        public static Matrix Scale(float x, float y, float z) {
+            Matrix scale = Eye(4);
+            scale[0, 0] = x;
+            scale[1, 1] = y;
+            scale[2, 2] = z;
+
+            return scale;
+        }
+
+        public static Matrix RotationX(float rads) {
+            Matrix rotation = Eye(4);
+            rotation[1, 1] = MathF.Cos(rads);
+            rotation[1, 2] = -MathF.Sin(rads);
+            rotation[2, 1] = MathF.Sin(rads);
+            rotation[2, 2] = MathF.Cos(rads);
+
+            return rotation;
+        }
+
+        public static Matrix RotationY(float rads) {
+            Matrix rotation = Eye(4);
+            rotation[0, 0] = MathF.Cos(rads);
+            rotation[0, 2] = MathF.Sin(rads);
+            rotation[2, 0] = -MathF.Sin(rads);
+            rotation[2, 2] = MathF.Cos(rads);
+
+            return rotation;
+        }
+
+        public static Matrix RotationZ(float rads) {
+            Matrix rotation = Eye(4);
+            rotation[0, 0] = MathF.Cos(rads);
+            rotation[0, 1] = -MathF.Sin(rads);
+            rotation[1, 0] = MathF.Sin(rads);
+            rotation[1, 1] = MathF.Cos(rads);
+
+            return rotation;
+        }
+
+        public static Matrix Shear(float xy, float xz, float yx, float yz, float zx, float zy) {
+            Matrix rotation = Eye(4);
+            rotation[0, 1] = xy;
+            rotation[0, 2] = xz;
+            rotation[1, 0] = yx;
+            rotation[1, 2] = yz;
+            rotation[2, 0] = zx;
+            rotation[2, 1] = zy;
+
+            return rotation;
         }
 
         public Matrix T() {
@@ -97,7 +151,7 @@ namespace Raytracer {
             if (!IsInvertible()) throw new InvalidOperationException("Matrix not invertible");
 
             Matrix result = new Matrix(order);
-            for (int  i = 0; i < order; i++) {
+            for (int i = 0; i < order; i++) {
                 for (int j = 0; j < order; j++) {
                     result[j, i] = Cofactor(i, j) / Det();
                 }
@@ -114,18 +168,18 @@ namespace Raytracer {
                 }
 
                 if (transposed) return matrix[j, i];
-                return matrix[i, j]; 
+                return matrix[i, j];
             }
             set {
                 if (i < 0 || j < 0 ||
                     i >= order || j >= order) {
                     throw new ArgumentOutOfRangeException();
                 }
-                
+
                 if (transposed) {
                     matrix[j, i] = value;
                 } else {
-                    matrix[i, j] = value; 
+                    matrix[i, j] = value;
                 }
             }
         }
@@ -140,7 +194,7 @@ namespace Raytracer {
 
             for (int i = 0; i < order; i++) {
                 for (int j = 0; j < order; j++) {
-                    if (this[i, j] != other[i, j]) return false; 
+                    if (this[i, j] != other[i, j]) return false;
                 }
             }
             return true;

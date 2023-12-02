@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Raytracer {
+﻿namespace Raytracer {
     public class Tuple {
         public float x;
         public float y;
@@ -54,14 +48,14 @@ namespace Raytracer {
             return new Tuple(x, y, z, 0.0f);
         }
 
-        public static Tuple operator +(Tuple left, Tuple right) { 
+        public static Tuple operator +(Tuple left, Tuple right) {
             return new Tuple(left.x + right.x, left.y + right.y,
                 left.z + right.z, left.w + right.w);
         }
 
-        public static Tuple operator -(Tuple left, Tuple right) { 
-            return new Tuple(left.x - right.x, left.y - right.y, 
-                left.z - right.z, left.w - right.w);   
+        public static Tuple operator -(Tuple left, Tuple right) {
+            return new Tuple(left.x - right.x, left.y - right.y,
+                left.z - right.z, left.w - right.w);
         }
 
         public static Tuple operator -(Tuple tuple) {
@@ -99,20 +93,20 @@ namespace Raytracer {
             }
             set {
                 switch (i) {
-                case 0:
-                    x = value;
-                    break;
-                case 1:
-                    y = value;
-                    break;
-                case 2:
-                    z = value;
-                    break;
-                case 3:
-                    w = value;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException();
+                    case 0:
+                        x = value;
+                        break;
+                    case 1:
+                        y = value;
+                        break;
+                    case 2:
+                        z = value;
+                        break;
+                    case 3:
+                        w = value;
+                        break;
+                    default:
+                        throw new IndexOutOfRangeException();
                 }
             }
         }
@@ -129,8 +123,8 @@ namespace Raytracer {
             if (obj is Tuple) {
                 Tuple other = (Tuple)obj;
 
-                return x == other.x && y == other.y && 
-                    z == other.z && w == other.w;    
+                return x == other.x && y == other.y &&
+                    z == other.z && w == other.w;
             }
 
             return base.Equals(obj);

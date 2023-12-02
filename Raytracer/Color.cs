@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Raytracer {
+﻿namespace Raytracer {
     public class Color : Tuple {
         public Color(float red, float green, float blue) : base(red, green, blue, 0.0f) {
-            
+
         }
 
         public float Red { get => x; set => x = value; }
