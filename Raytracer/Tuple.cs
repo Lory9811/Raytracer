@@ -82,6 +82,49 @@ namespace Raytracer {
                 tuple.z / scalar, tuple.w / scalar);
         }
 
+        public float this[int i] {
+            get {
+                switch (i) {
+                    case 0:
+                        return x;
+                    case 1:
+                        return y;
+                    case 2:
+                        return z;
+                    case 3:
+                        return w;
+                    default:
+                        throw new IndexOutOfRangeException();
+                }
+            }
+            set {
+                switch (i) {
+                case 0:
+                    x = value;
+                    break;
+                case 1:
+                    y = value;
+                    break;
+                case 2:
+                    z = value;
+                    break;
+                case 3:
+                    w = value;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException();
+                }
+            }
+        }
+
+        public static bool operator ==(Tuple left, Tuple right) {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Tuple left, Tuple right) {
+            return !left.Equals(right);
+        }
+
         public override bool Equals(object? obj) {
             if (obj is Tuple) {
                 Tuple other = (Tuple)obj;
