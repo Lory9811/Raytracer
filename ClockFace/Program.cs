@@ -1,4 +1,5 @@
 ﻿using Raytracer;
+
 using Tuple = Raytracer.Tuple;
 
 Console.WriteLine("The Ray Tracer Challenge / Chapter 4");

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Raytracer;
-using Tuple = Raytracer.Tuple;
+﻿using Tuple = Raytracer.Tuple;
 
 namespace ProjectileSimulation {
     internal class Projectile {

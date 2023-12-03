@@ -21,7 +21,7 @@
         }
 
         public float Magnitude() {
-            return (float)Math.Sqrt(x * x + y * y + z * z + w * w);
+            return MathF.Sqrt(x * x + y * y + z * z + w * w);
         }
 
         public Tuple Normalized() {
@@ -29,7 +29,7 @@
         }
 
         public float Dot(Tuple other) {
-            return (x * other.x + y * other.y + z * other.z + w * other.w);
+            return x * other.x + y * other.y + z * other.z + w * other.w;
         }
 
         public Tuple Cross(Tuple other) {

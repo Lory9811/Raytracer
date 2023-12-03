@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaytracerTests", "Raytracer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectileSimulation", "ProjectileSimulation\ProjectileSimulation.csproj", "{C8E5A51A-6926-4EC6-86AA-52936F85E3F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClockFace", "ClockFace\ClockFace.csproj", "{FFF52D00-8E76-4480-9ECF-0618AA6E16B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClockFace", "ClockFace\ClockFace.csproj", "{FFF52D00-8E76-4480-9ECF-0618AA6E16B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRaycastDemo", "SimpleRaycastDemo\SimpleRaycastDemo.csproj", "{0F45D633-9974-4F14-AF6B-4158C4D430F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{FFF52D00-8E76-4480-9ECF-0618AA6E16B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFF52D00-8E76-4480-9ECF-0618AA6E16B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFF52D00-8E76-4480-9ECF-0618AA6E16B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F45D633-9974-4F14-AF6B-4158C4D430F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F45D633-9974-4F14-AF6B-4158C4D430F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F45D633-9974-4F14-AF6B-4158C4D430F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F45D633-9974-4F14-AF6B-4158C4D430F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
