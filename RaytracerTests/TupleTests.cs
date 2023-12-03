@@ -186,5 +186,31 @@ namespace Raytracer.Tests {
             Assert.AreEqual(expected.z, result.z, Delta);
             Assert.AreEqual(expected.w, result.w, Delta);
         }
+
+        [TestMethod]
+        public void ReflectionTest() {
+            Tuple vector = Tuple.CreateVector(1, -1, 0);
+            Tuple normal = Tuple.CreateVector(0, 1, 0);
+            Tuple reflection = vector.Reflect(normal);
+
+            Tuple expected = Tuple.CreateVector(1, 1, 0);
+
+            for (int i = 0; i < 4; i++) {
+                Assert.AreEqual(expected[i], reflection[i], Delta);
+            }
+        }
+
+        [TestMethod]
+        public void ReflectionTest2() {
+            Tuple vector = Tuple.CreateVector(0, -1, 0);
+            Tuple normal = Tuple.CreateVector(MathF.Sqrt(2) / 2.0f, MathF.Sqrt(2) / 2.0f, 0);
+            Tuple reflection = vector.Reflect(normal);
+
+            Tuple expected = Tuple.CreateVector(1, 0, 0);
+
+            for (int i = 0; i < 4; i++) {
+                Assert.AreEqual(expected[i], reflection[i], Delta);
+            }
+        }
     }
 }

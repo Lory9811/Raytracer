@@ -40,6 +40,10 @@
             );
         }
 
+        public Tuple Reflect(Tuple normal) {
+            return this - normal * 2.0f * this.Dot(normal);
+        }
+
         public static Tuple CreatePoint(float x, float y, float z) {
             return new Tuple(x, y, z, 1.0f);
         }
