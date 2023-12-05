@@ -15,7 +15,7 @@ float wallSize = 7.0f;
 float pixelSize = wallSize / canvasSize;
 float half = wallSize / 2.0f;
 
-Sphere sphere = new Sphere(0);
+Sphere sphere = new Sphere(Guid.NewGuid());
 
 for (int y = 0; y < canvas.Height; y++) {
     float worldY = half - pixelSize * y;
@@ -25,7 +25,7 @@ for (int y = 0; y < canvas.Height; y++) {
 
         Ray ray = new Ray(camera, (targetPoint - camera).Normalized());
         Intersections intersections = new Intersections(sphere.Intersect(ray));
-        if (intersections.Hit() != null) {
+        if (intersections.Hit() is not null) {
             canvas.SetPixel(x, y, color);
         }
     }

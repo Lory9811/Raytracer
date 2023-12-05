@@ -18,11 +18,12 @@ float half = wallSize / 2.0f;
 Material material = new Material();
 material.color = new Color(1, 0.2f, 1);
 
-Sphere[] entities = {
-     new Sphere(0)
-};
 
-entities[0].material = material;
+Dictionary<Guid, Entity> entities = new Dictionary<Guid, Entity>();
+Sphere sphere = new Sphere(Guid.NewGuid());
+
+entities[sphere.Id] = sphere;
+entities[sphere.Id].SurfaceMaterial = material;
 Tuple lightPosition = Tuple.CreatePoint(-10, 10, -10);
 Color lightColor = new Color(1, 1, 1);
 PointLight light = new PointLight(lightPosition, color);
@@ -34,13 +35,14 @@ for (int y = 0; y < canvas.Height; y++) {
         Tuple targetPoint = Tuple.CreatePoint(worldX, worldY, wallZ);
 
         Ray ray = new Ray(camera, (targetPoint - camera).Normalized());
-        Intersections intersections = new Intersections(entities[0].Intersect(ray));
+
+        Intersections intersections = new Intersections(entities[sphere.Id].Intersect(ray));
         Intersection? hit = intersections.Hit();
-        if (hit != null) {
+        if (hit is not null) {
             Tuple point = ray.Position(hit.t);
-            Tuple normal = entities[hit.entity].NormalAt(point);
+            Tuple normal = hit.entity.NormalAt(point);
             Tuple eye = -ray.Direction;
-            canvas.SetPixel(x, y, entities[hit.entity].material.Lighting(light, point, eye, normal));
+            canvas.SetPixel(x, y, hit.entity.SurfaceMaterial.Lighting(light, point, eye, normal));
         }
     }
 }

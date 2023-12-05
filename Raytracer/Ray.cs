@@ -1,4 +1,7 @@
-﻿namespace Raytracer {
+﻿using Microsoft.VisualBasic;
+using System.Collections;
+
+namespace Raytracer {
     public class Ray {
         private Tuple origin;
         private Tuple direction;
@@ -33,16 +36,41 @@
 
     public class Intersection {
         public readonly float t;
-        public readonly int entity;
-
-        public Intersection(float t, int entityId) { 
-            this.t = t;
-            this.entity = entityId;
-        }
+        public readonly Entity entity;
 
         public Intersection(float t, Entity entity) {
             this.t = t;
-            this.entity = entity.Id;
+            this.entity = entity;
+        }
+
+        public class HitData {
+            public readonly float t;
+            public readonly Entity entity;
+            public readonly Tuple point;
+            public readonly Tuple eye;
+            public readonly Tuple normal;
+            public readonly bool inside;
+
+            public HitData(float t, Entity entity, Tuple point, Tuple eye, Tuple normal, bool inside) {
+                this.t = t;
+                this.entity = entity;
+                this.point = point;
+                this.eye = eye;
+                this.normal = normal;
+                this.inside = inside;
+            }
+        }
+
+        public HitData ComputeHitData(Ray ray) {
+            Tuple point = ray.Position(t);
+            Tuple normal = entity.NormalAt(point);
+            Tuple eye = -ray.Direction;
+            bool inside = normal.Dot(eye) < 0;
+
+            if (inside)
+                normal = -normal;
+
+            return new HitData(t, entity, point, -ray.Direction, normal, inside);
         }
 
         public override string ToString() {
@@ -54,7 +82,7 @@
         private Intersection[] intersections;
         private Intersection[] potentialHits;
 
-        public int Length {
+        public int Count {
             get { return intersections.Length; }
         }
 

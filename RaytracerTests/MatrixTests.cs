@@ -585,5 +585,62 @@ namespace Raytracer.Tests {
                 Assert.AreEqual(expected[i], result[i], Delta);
             }
         }
+
+        [TestMethod]
+        public void ViewTransformTest() {
+            Tuple from = Tuple.CreatePoint(0, 0, 0);
+            Tuple to = Tuple.CreatePoint(0, 0, -1);
+            Tuple up = Tuple.CreateVector(0, 1, 0);
+            Matrix view = Matrix.ViewTransform(from, to, up);
+
+            Assert.AreEqual(Matrix.Eye(4), view);
+        }
+
+        [TestMethod]
+        public void ViewTransformTest2() {
+            Tuple from = Tuple.CreatePoint(0, 0, 0);
+            Tuple to = Tuple.CreatePoint(0, 0, 1);
+            Tuple up = Tuple.CreateVector(0, 1, 0);
+            Matrix view = Matrix.ViewTransform(from, to, up);
+
+            Assert.AreEqual(Matrix.Scale(-1, 1, -1), view);
+        }
+
+        [TestMethod]
+        public void ViewTransformTest3() {
+            Tuple from = Tuple.CreatePoint(0, 0, 8);
+            Tuple to = Tuple.CreatePoint(0, 0, 0);
+            Tuple up = Tuple.CreateVector(0, 1, 0);
+            Matrix view = Matrix.ViewTransform(from, to, up);
+
+            Matrix expected = Matrix.Translation(0, 0, -8);
+
+            for (int i = 0; i < expected.order; i++) {
+                for (int j = 0; j < expected.order; j++) {
+                    Assert.AreEqual(expected[i, j], view[i, j], 0.00001f);
+                } 
+            }
+        }
+
+        [TestMethod]
+        public void ViewTransformTest4() {
+            Tuple from = Tuple.CreatePoint(1, 3, 2);
+            Tuple to = Tuple.CreatePoint(4, -2, 8);
+            Tuple up = Tuple.CreateVector(1, 1, 0);
+            Matrix view = Matrix.ViewTransform(from, to, up);
+
+            Matrix expected = new Matrix(4, new float[,] {
+                { -0.50709f, 0.50709f, 0.67612f, -2.36643f },
+                { 0.76772f, 0.60609f, 0.12122f, -2.82843f },
+                { -0.35857f, 0.59761f, -0.71714f, 0 },
+                { 0, 0, 0, 1 },
+            });
+
+            for (int i = 0; i < expected.order; i++) {
+                for (int j = 0; j < expected.order; j++) {
+                    Assert.AreEqual(expected[i, j], view[i, j], 0.00001f);
+                }
+            }
+        }
     }
 }

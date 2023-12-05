@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectileSimulation", "Pro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClockFace", "ClockFace\ClockFace.csproj", "{FFF52D00-8E76-4480-9ECF-0618AA6E16B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRaycastDemo", "SimpleRaycastDemo\SimpleRaycastDemo.csproj", "{0F45D633-9974-4F14-AF6B-4158C4D430F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleRaycastDemo", "SimpleRaycastDemo\SimpleRaycastDemo.csproj", "{0F45D633-9974-4F14-AF6B-4158C4D430F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialRaycastDemo", "MaterialRaycastDemo\MaterialRaycastDemo.csproj", "{6288A4A3-364E-40F2-A33A-1637B3D0D20A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaterialRaycastDemo", "MaterialRaycastDemo\MaterialRaycastDemo.csproj", "{6288A4A3-364E-40F2-A33A-1637B3D0D20A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SceneDemo", "SceneDemo\SceneDemo.csproj", "{47C7E705-D6CB-442C-BC3E-46F47AF018E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{6288A4A3-364E-40F2-A33A-1637B3D0D20A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6288A4A3-364E-40F2-A33A-1637B3D0D20A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6288A4A3-364E-40F2-A33A-1637B3D0D20A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47C7E705-D6CB-442C-BC3E-46F47AF018E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47C7E705-D6CB-442C-BC3E-46F47AF018E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47C7E705-D6CB-442C-BC3E-46F47AF018E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47C7E705-D6CB-442C-BC3E-46F47AF018E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

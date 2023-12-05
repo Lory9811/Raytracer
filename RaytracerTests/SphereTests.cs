@@ -13,7 +13,7 @@ namespace Raytracer.Tests {
 
         [TestMethod()]
         public void NormalAtTest() {
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
             Tuple normal = sphere.NormalAt(Tuple.CreatePoint(1, 0, 0));
 
             Assert.AreEqual(Tuple.CreateVector(1, 0, 0), normal);
@@ -21,7 +21,7 @@ namespace Raytracer.Tests {
 
         [TestMethod()]
         public void NormalAtTest1() {
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
             Tuple normal = sphere.NormalAt(Tuple.CreatePoint(0, 1, 0));
 
             Assert.AreEqual(Tuple.CreateVector(0, 1, 0), normal);
@@ -29,7 +29,7 @@ namespace Raytracer.Tests {
 
         [TestMethod()]
         public void NormalAtTest2() {
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
             Tuple normal = sphere.NormalAt(Tuple.CreatePoint(0, 0, 1));
 
             Assert.AreEqual(Tuple.CreateVector(0, 0, 1), normal);
@@ -37,7 +37,7 @@ namespace Raytracer.Tests {
 
         [TestMethod()]
         public void NormalAtTest3() {
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
             Tuple normal = sphere.NormalAt(Tuple.CreatePoint(MathF.Sqrt(3.0f) / 3.0f, MathF.Sqrt(3.0f) / 3.0f, MathF.Sqrt(3.0f) / 3.0f));
             Tuple expected = Tuple.CreateVector(MathF.Sqrt(3.0f) / 3.0f, MathF.Sqrt(3.0f) / 3.0f, MathF.Sqrt(3.0f) / 3.0f);
             
@@ -49,7 +49,7 @@ namespace Raytracer.Tests {
 
         [TestMethod()]
         public void NormalAtTest4() {
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
             sphere.Transform = Matrix.Translation(0, 1, 0);
             Tuple normal = sphere.NormalAt(Tuple.CreatePoint(0, 1.70711f, -0.70711f));
             Tuple expected = Tuple.CreateVector(0, 0.70711f, -0.70711f);
@@ -61,7 +61,7 @@ namespace Raytracer.Tests {
 
         [TestMethod()]
         public void NormalAtTest5() {
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
             sphere.Transform = Matrix.Scale(1, 0.5f, 1) * Matrix.RotationZ(MathF.PI / 5.0f);
             Tuple normal = sphere.NormalAt(Tuple.CreatePoint(0, MathF.Sqrt(2.0f) / 2.0f, -MathF.Sqrt(2.0f) / 2.0f));
             Tuple expected = Tuple.CreateVector(0, 0.97014f, -0.24254f);
@@ -73,22 +73,22 @@ namespace Raytracer.Tests {
 
         [TestMethod()]
         public void MaterialTest() {
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
             Material newMat = new Material();
-            Assert.AreEqual(newMat.color, sphere.material.color);
-            Assert.AreEqual(newMat.shininess, sphere.material.shininess);
-            Assert.AreEqual(newMat.specular, sphere.material.specular);
-            Assert.AreEqual(newMat.ambient, sphere.material.ambient);
+            Assert.AreEqual(newMat.color, sphere.SurfaceMaterial.color);
+            Assert.AreEqual(newMat.shininess, sphere.SurfaceMaterial.shininess);
+            Assert.AreEqual(newMat.specular, sphere.SurfaceMaterial.specular);
+            Assert.AreEqual(newMat.ambient, sphere.SurfaceMaterial.ambient);
         }
 
         [TestMethod()]
         public void MaterialTest2() {
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
             Material newMat = new Material();
             newMat.ambient = 1.0f;
-            sphere.material = newMat;
+            sphere.SurfaceMaterial = newMat;
 
-            Assert.AreEqual(newMat, sphere.material);
+            Assert.AreEqual(newMat, sphere.SurfaceMaterial);
         }
     }
 }

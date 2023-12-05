@@ -78,9 +78,5 @@ namespace Raytracer {
 
             return sb.ToString();
         }
-
-        public void SavePpm(string filename) {
-
-        }
     }
 }

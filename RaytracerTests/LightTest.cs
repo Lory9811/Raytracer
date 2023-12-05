@@ -1,10 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Raytracer;
 
-using Color = Raytracer.Color;
-using Tuple = Raytracer.Tuple;
-
-namespace RaytracerTests {
+namespace Raytracer.Tests {
     [TestClass]
     public class LightTest {
         [TestMethod]

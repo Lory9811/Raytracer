@@ -28,88 +28,88 @@ namespace Raytracer.Tests {
         [TestMethod()]
         public void SphereIntersectionTest() {
             Ray ray = new Ray(Tuple.CreatePoint(0, 0, -5), Tuple.CreateVector(0, 0, 1));
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
             
             Intersection[] intersections = sphere.Intersect(ray);
 
             Assert.AreEqual(2, intersections.Length);
             Assert.AreEqual(4.0f, intersections[0].t);
-            Assert.AreEqual(sphere.Id, intersections[0].entity);
+            Assert.AreEqual(sphere, intersections[0].entity);
             Assert.AreEqual(6.0f, intersections[1].t);
-            Assert.AreEqual(sphere.Id, intersections[1].entity);
+            Assert.AreEqual(sphere, intersections[1].entity);
         }
 
         [TestMethod()]
         public void SphereIntersectionTest2() {
             Ray ray = new Ray(Tuple.CreatePoint(0, 1, -5), Tuple.CreateVector(0, 0, 1));
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
 
             Intersection[] intersections = sphere.Intersect(ray);
 
             Assert.AreEqual(2, intersections.Length);
             Assert.AreEqual(5.0f, intersections[0].t);
-            Assert.AreEqual(sphere.Id, intersections[0].entity);
+            Assert.AreEqual(sphere, intersections[0].entity);
             Assert.AreEqual(5.0f, intersections[1].t);
-            Assert.AreEqual(sphere.Id, intersections[1].entity);
+            Assert.AreEqual(sphere, intersections[1].entity);
         }
 
         [TestMethod()]
         public void SphereIntersectionTest3() {
             Ray ray = new Ray(Tuple.CreatePoint(0, 2, -5), Tuple.CreateVector(0, 0, 1));
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
 
             Intersection[] intersections = sphere.Intersect(ray);
 
-            Assert.AreEqual(sphere.Id, intersections.Length);
+            Assert.AreEqual(0, intersections.Length);
         }
 
         [TestMethod()]
         public void SphereIntersectionTest4() {
             Ray ray = new Ray(Tuple.CreatePoint(0, 0, 0), Tuple.CreateVector(0, 0, 1));
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
 
             Intersection[] intersections = sphere.Intersect(ray);
 
             Assert.AreEqual(2, intersections.Length);
             Assert.AreEqual(-1.0f, intersections[0].t);
-            Assert.AreEqual(sphere.Id, intersections[0].entity);
+            Assert.AreEqual(sphere, intersections[0].entity);
             Assert.AreEqual(1.0f, intersections[1].t);
-            Assert.AreEqual(sphere.Id, intersections[1].entity);
+            Assert.AreEqual(sphere, intersections[1].entity);
         }
 
         [TestMethod()]
         public void SphereIntersectionTest5() {
             Ray ray = new Ray(Tuple.CreatePoint(0, 0, 5), Tuple.CreateVector(0, 0, 1));
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
 
             Intersection[] intersections = sphere.Intersect(ray);
 
             Assert.AreEqual(2, intersections.Length);
             Assert.AreEqual(-6.0f, intersections[0].t);
-            Assert.AreEqual(sphere.Id, intersections[0].entity);
+            Assert.AreEqual(sphere, intersections[0].entity);
             Assert.AreEqual(-4.0f, intersections[1].t);
-            Assert.AreEqual(sphere.Id, intersections[1].entity);
+            Assert.AreEqual(sphere, intersections[1].entity);
         }
 
         [TestMethod()]
         public void IntersectionsTest() {
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
 
             Intersection i1 = new Intersection(1, sphere);
             Intersection i2 = new Intersection(2, sphere);
 
             Intersections intersections = new Intersections(i1, i2);
 
-            Assert.AreEqual(2, intersections.Length);
+            Assert.AreEqual(2, intersections.Count);
             Assert.AreEqual(1, intersections[0].t);
-            Assert.AreEqual(sphere.Id, intersections[0].entity);
+            Assert.AreEqual(sphere, intersections[0].entity);
             Assert.AreEqual(2, intersections[1].t);
-            Assert.AreEqual(sphere.Id, intersections[1].entity);
+            Assert.AreEqual(sphere, intersections[1].entity);
         }
 
         [TestMethod()]
         public void HitsTest() {
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
 
             Intersection i1 = new Intersection(1, sphere);
             Intersection i2 = new Intersection(2, sphere);
@@ -122,7 +122,7 @@ namespace Raytracer.Tests {
 
         [TestMethod()]
         public void HitsTest2() {
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
 
             Intersection i1 = new Intersection(-1, sphere);
             Intersection i2 = new Intersection(1, sphere);
@@ -135,7 +135,7 @@ namespace Raytracer.Tests {
 
         [TestMethod()]
         public void HitsTest3() {
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
 
             Intersection i1 = new Intersection(-2, sphere);
             Intersection i2 = new Intersection(-1, sphere);
@@ -148,7 +148,7 @@ namespace Raytracer.Tests {
 
         [TestMethod()]
         public void HitsTest4() {
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
 
             Intersection i1 = new Intersection(5, sphere);
             Intersection i2 = new Intersection(7, sphere);
@@ -174,14 +174,14 @@ namespace Raytracer.Tests {
 
         [TestMethod()]
         public void SphereTransformTest() {
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
 
             Assert.AreEqual(sphere.Transform, Matrix.Eye(4));
         }
 
         [TestMethod()]
         public void SphereTransformTest1() {
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
             Matrix transform = Matrix.Translation(2, 3, 4);
 
             sphere.Transform = transform;
@@ -192,7 +192,7 @@ namespace Raytracer.Tests {
         [TestMethod()]
         public void SphereTransformRayIntersectionTest() {
             Ray ray = new Ray(Tuple.CreatePoint(0, 0, -5), Tuple.CreateVector(0, 0, 1));
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
             sphere.Transform = Matrix.Scale(2, 2, 2);
             Intersection[] intersections = sphere.Intersect(ray);
 
@@ -204,11 +204,51 @@ namespace Raytracer.Tests {
         [TestMethod()]
         public void SphereTransformRayIntersectionTest1() {
             Ray ray = new Ray(Tuple.CreatePoint(0, 0, -5), Tuple.CreateVector(0, 0, 1));
-            Sphere sphere = new Sphere(0);
+            Sphere sphere = new Sphere(Guid.NewGuid());
             sphere.Transform = Matrix.Translation(5, 0, 0);
             Intersection[] intersections = sphere.Intersect(ray);
 
             Assert.AreEqual(0, intersections.Length);
+        }
+
+        [TestMethod()]
+        public void HitDataTest() {
+            Ray ray = new Ray(Tuple.CreatePoint(0, 0, -5), Tuple.CreateVector(0, 0, 1));
+            Sphere sphere = new Sphere(Guid.NewGuid());
+            Intersection intersection = new Intersection(4, sphere);
+
+            Intersection.HitData hitData = intersection.ComputeHitData(ray);
+            
+            Assert.AreEqual(intersection.t, hitData.t);
+            Assert.AreEqual(intersection.entity, hitData.entity);
+            Assert.AreEqual(Tuple.CreatePoint(0, 0, -1), hitData.point);
+            Assert.AreEqual(Tuple.CreateVector(0, 0, -1), hitData.eye);
+            Assert.AreEqual(Tuple.CreateVector(0, 0, -1), hitData.normal);
+        }
+
+        [TestMethod()]
+        public void HitDataTest2() {
+            Ray ray = new Ray(Tuple.CreatePoint(0, 0, -5), Tuple.CreateVector(0, 0, 1));
+            Sphere sphere = new Sphere(Guid.NewGuid());
+            Intersection intersection = new Intersection(4, sphere);
+
+            Intersection.HitData hitData = intersection.ComputeHitData(ray);
+
+            Assert.IsFalse(hitData.inside);
+        }
+
+        [TestMethod()]
+        public void HitDataTest3() {
+            Ray ray = new Ray(Tuple.CreatePoint(0, 0, 0), Tuple.CreateVector(0, 0, 1));
+            Sphere sphere = new Sphere(Guid.NewGuid());
+            Intersection intersection = new Intersection(1, sphere);
+
+            Intersection.HitData hitData = intersection.ComputeHitData(ray);
+
+            Assert.IsTrue(hitData.inside);
+            Assert.AreEqual(Tuple.CreatePoint(0, 0, 1), hitData.point);
+            Assert.AreEqual(Tuple.CreateVector(0, 0, -1), hitData.eye);
+            Assert.AreEqual(Tuple.CreateVector(0, 0, -1), hitData.normal);
         }
     }
 }

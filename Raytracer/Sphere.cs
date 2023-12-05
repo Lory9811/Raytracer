@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace Raytracer {
     public class Sphere : Entity {
-        public Material material;
-
-        public Sphere(int id) : base(id) {
-            material = new Material();
+        public Sphere(Guid id, string name = "unnamed_sphere") : base(id, name) {
+            
         }
 
-        public Intersection[] Intersect(Ray ray) {
+        public override Intersection[] Intersect(Ray ray) {
             Ray transformedRay = ray.Transform(transform.Inverse());
             Tuple sphereToRay = transformedRay.Origin - Tuple.CreatePoint(0, 0, 0);
 
@@ -32,7 +30,7 @@ namespace Raytracer {
             };
         }
 
-        public Tuple NormalAt(Tuple point) {
+        public override Tuple NormalAt(Tuple point) {
             Tuple localPoint = transform.Inverse() * point;
             Tuple localNormal = localPoint - Tuple.CreatePoint(0, 0, 0);
             Tuple worldNormal = transform.Inverse().T() * localNormal;

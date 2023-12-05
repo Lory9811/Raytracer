@@ -18,3 +18,5 @@ using System.Runtime.InteropServices;
 [assembly: Guid("382613af-8d60-45d5-bdc2-adf30efa34bc")]
 
 [assembly: InternalsVisibleTo("RaytracerTests")]
+[assembly: InternalsVisibleTo("MaterialRaycastDemo")]
+[assembly: InternalsVisibleTo("SimpleRaycastDemo")]

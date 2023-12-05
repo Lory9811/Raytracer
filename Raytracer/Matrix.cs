@@ -91,6 +91,21 @@
             return rotation;
         }
 
+        public static Matrix ViewTransform(Tuple from, Tuple to, Tuple up) {
+            Tuple forward = (to - from).Normalized();
+            Tuple left = forward.Cross(up.Normalized());
+            Tuple trueUp = left.Cross(forward);
+
+            Matrix orientation = new Matrix(4, new float[,] {
+                { left.x, left.y, left.z, 0 }, 
+                { trueUp.x, trueUp.y, trueUp.z, 0},
+                { -forward.x, -forward.y, -forward.z, 0 },
+                { 0, 0, 0, 1 },
+            });
+
+            return orientation * Translation(-from.x, -from.y, -from.z);
+        }
+
         public Matrix T() {
             Matrix result = new Matrix(order, matrix);
             result.transposed = true;
@@ -185,7 +200,6 @@
         }
 
         public override bool Equals(object? obj) {
-            if (obj == null) return false;
             if (obj is not Matrix) return false;
 
             Matrix other = (Matrix)obj;
